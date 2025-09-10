@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Sentient | AI Startup Mentor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #87CEEB;
+      --secondary-color: #2196F3;
+      --text-color: #FF8C00;
+      --background-light: #f4f7f6;
+      --background-dark: #e0e5ec;
+      --card-background: var(--transparent);
+      --border-color: #ccc;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-heavy: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Universal Box Sizing for better layout control
+    */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      /* --- MODIFICATION START --- */
+      background-color: var(--trasnaprent); /* Fallback color */
+      /* Set your image as the background with an overlay for readability */
+      background-image: url('https://i.postimg.cc/FsBH7D6t/3d-senti.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      /* --- MODIFICATION END --- */
+      color: var(--text-color);
+      padding: 20px;
+      margin: 0;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column; /* CRITICAL FIX: Stacks items vertically */
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 900px;
+      width: 100%;
+        .fully-transparent-background {
+    background-color: transparent;
+  }
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px var(--shadow-heavy);
+      text-align: center;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .app:hover {
+      box-shadow: 0 15px 40px var(--shadow-heavy);
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 2.5em;
+      letter-spacing: 1px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--secondary-color);
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      font-weight: 600;
+      animation: fadeIn 1s ease-out 0.2s forwards;
+      opacity: 0;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 20px 0 8px;
+      font-weight: 600;
+      font-size: 1.1em;
+      color: var(--text-color);
+      animation: fadeInLeft 0.8s ease-out 0.4s forwards;
+      opacity: 0;
+    }
+
+    input {
+      width: 100%; /* Simplified due to box-sizing */
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--background-dark);
+      color: var(--text-color);
+      font-size: 1em;
+      box-shadow: inset 2px 2px 5px var(--shadow-light);
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      animation: fadeInRight 0.8s ease-out 0.6s forwards;
+      opacity: 0;
+    }
+
+    input:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+      outline: none;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 8px;
+      background: var(--trasnaprent);
+      color:#FF00FF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+      box-shadow: 0 4px 10px var(--shadow-light);
+      animation: fadeInUp 0.8s ease-out 0.8s forwards;
+      opacity: 0;
+    }
+
+    button:hover {
+      background: #43A047;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px var(--shadow-heavy);
+    }
+
+    button:disabled {
+      background: #A5D6A7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    #output {
+      margin-top: 30px;
+      white-space: pre-wrap;
+        .semi-transparent-background {
+    background-color: transparent;
+  }
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 350px;
+      max-height: 600px;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 0.95em;
+      line-height: 1.8;
+      box-shadow: inset 1px 1px 3px var(--shadow-light);
+      animation: fadeIn 1s ease-out 1s forwards;
+      opacity: 0;
+      transition: background 0.3s ease-in-out;
+    }
+
+    #output:empty::before {
+        content: 'Your startup insights will appear here...';
+        color: #888;
+    }
+
+    #output b {
+      color: var(--secondary-color);
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      margin: 30px 0 10px 0; /* Adjusted margin for proper spacing */
+      width: 100%;
+      font-size: 0.9em;
+      color:#F5DEB3;
+      animation: fadeIn 1s ease-out 1.2s forwards;
+      opacity: 0;
+    }
+
+    footer strong {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* --- Responsive Design --- */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+        justify-content: flex-start; /* Aligns content to the top on mobile */
+      }
+      
+      .app {
+        padding: 20px;
+        margin-top: 15px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      h2 {
+        font-size: 1.1em;
+      }
+      
+      button {
+        padding: 12px 20px;
+        font-size: 1em;
+      }
+
+      #output {
+        min-height: 300px;
+        font-size: 0.9em;
+      }
+
+      footer {
+        margin-top: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <img src="https://i.postimg.cc/FRyf28h5/sentient-removebg-preview.png" alt="" width="100" height="100" >
+    <h1>Sentient</h1>
+    <h2>AI Startup Mentor</h2>
+
+    <label for="idea" style="color: #32CD32;">Enter your startup idea:</label>
+    <input type="text" id="idea" placeholder="e.g., AI-powered nutrition coach" />
+
+    <button id="generateBtn">✨ Generate Insights</button>
+
+    <div id="output"></div>
+  </div>
+
+  <footer>
+    Designed & Developed by <strong>Abhishek</strong> | Powered by <strong>Sentient x Fireworks AI</strong>
+  </footer>
+
+  <script>
+  // Your JavaScript code remains the same
+  const API_KEY = "fw_3ZWJ1wqWgseWYzW6q77Sc43J";//fw_3ZNxpScnpYYeSGWGd81yLJDb
+  const DEFAULT_MODEL = "accounts/sentientfoundation-serverless/models/dobby-mini-unhinged-plus-llama-3-1-8b";
+  const ENDPOINT = "https://api.fireworks.ai/inference/v1/chat/completions";
+  const SYSTEM_PROMPT = `
+    You are an AI Startup Mentor.
+    Reply ONLY in valid JSON, no markdown, no commentary.
+    {
+      "market": { "summary": "...", "tam": "...", "sam": "...", "som": "...", "segments": ["..."] },
+      "competitors": [ { "name": "...", "type": "...", "pricing": "...", "usp": "...", "risk": "..." } ],
+      "pitch": ["...", "..."],
+      "guide": ["...", "..."],
+      "swot": {
+        "strengths": ["..."],
+        "weaknesses": ["..."],
+        "opportunities": ["..."],
+        "threats": ["..."]
+      },
+      "funding": [ { "stage": "...", "amount": "...", "use": "...", "milestone": "..." } ]
+    }
+  `;
+  const btn = document.getElementById("generateBtn");
+  const ideaEl = document.getElementById("idea");
+  const output = document.getElementById("output");
+  btn.addEventListener("click", async () => {
+    const idea = ideaEl.value.trim();
+    if (!idea) {
+      alert("Please enter a startup idea.");
+      return;
+    }
+    btn.disabled = true;
+    output.textContent = `⚡ Generating startup insights for "${idea}"... Please wait.`;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+          model: DEFAULT_MODEL,
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            { role: "user", content: `Generate a detailed startup guide for: ${idea}` }
+          ],
+          max_tokens: 1500
+        })
+      });
+      const data = await res.json();
+      let text = data?.choices?.[0]?.message?.content || "{}";
+      text = text.replace(/```json|```/g, "").trim();
+      const match = text.match(/\{[\s\S]*\}/);
+      if (!match) {
+        output.textContent = "❌ No valid JSON structure found in the response. Raw output:\n\n" + text;
+        return;
+      }
+      let parsed;
+      try {
+        parsed = JSON.parse(match[0]);
+      } catch (e) {
+        output.textContent = "❌ Failed to parse JSON. Please check the API response format. Raw:\n\n" + text;
+        return;
+      }
+      output.innerHTML = `
+        <p>📊 <b>Market Research:</b></p>
+        <p>${parsed.market?.summary || "N/A"}</p>
+        <ul>
+          <li><b>TAM:</b> ${parsed.market?.tam || "N/A"}</li>
+          <li><b>SAM:</b> ${parsed.market?.sam || "N/A"}</li>
+          <li><b>SOM:</b> ${parsed.market?.som || "N/A"}</li>
+          <li><b>Segments:</b> ${(parsed.market?.segments || []).join(", ") || "N/A"}</li>
+        </ul>
+        <p>⚔️ <b>Competitors:</b></p>
+        ${(parsed.competitors && parsed.competitors.length > 0) ? `
+          <ul>
+            ${parsed.competitors.map(c => `<li><b>${c.name}</b> (${c.type || "N/A"})<br>
+              USP: ${c.usp || "N/A"}<br>
+              Pricing: ${c.pricing || "N/A"}</li>`).join("")}
+          </ul>
+        ` : "<p>No direct competitors identified or N/A.</p>"}
+        <p>📝 <b>Pitch Deck Outline:</b></p>
+        ${(parsed.pitch && parsed.pitch.length > 0) ? `
+          <ol>
+            ${parsed.pitch.map(p => `<li>${p}</li>`).join("")}
+          </ol>
+        ` : "<p>Pitch outline N/A.</p>"}
+        <p>📋 <b>Step-by-step Guide:</b></p>
+        ${(parsed.guide && parsed.guide.length > 0) ? `
+          <ol>
+            ${parsed.guide.map(g => `<li>${g}</li>`).join("")}
+          </ol>
+        ` : "<p>Guide N/A.</p>"}
+        <p>📈 <b>SWOT Analysis:</b></p>
+        <ul>
+          <li><b>Strengths:</b> ${(parsed.swot?.strengths || []).join(", ") || "N/A"}</li>
+          <li><b>Weaknesses:</b> ${(parsed.swot?.weaknesses || []).join(", ") || "N/A"}</li>
+          <li><b>Opportunities:</b> ${(parsed.swot?.opportunities || []).join(", ") || "N/A"}</li>
+          <li><b>Threats:</b> ${(parsed.swot?.threats || []).join(", ") || "N/A"}</li>
+        </ul>
+        <p>💰 <b>Funding Roadmap:</b></p>
+        ${(parsed.funding && parsed.funding.length > 0) ? `
+          <ul>
+            ${parsed.funding.map(f => `<li><b>${f.stage} Funding:</b> Raise ${f.amount || "N/A"}<br>
+              Use: ${f.use || "N/A"}<br>
+              Milestone: ${f.milestone || "N/A"}</li>`).join("")}
+          </ul>
+        ` : "<p>Funding roadmap N/A.</p>"}
+      `;
+    } catch (err) {
+      console.error("API call error:", err);
+      output.textContent = `❌ An error occurred: ${err.message}`;
+    } finally {
+      btn.disabled = false;
+    }
+
+  });
+  </script>
+</body>
+</html>
