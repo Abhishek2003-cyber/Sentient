@@ -18,28 +18,27 @@
       --shadow-heavy: rgba(0, 0, 0, 0.2);
     }
 
-    /* Universal Box Sizing for better layout control
-    */
+
     *, *::before, *::after {
       box-sizing: border-box;
     }
 
     body {
       font-family: 'Roboto', sans-serif;
-      /* --- MODIFICATION START --- */
-      background-color: var(--trasnaprent); /* Fallback color */
-      /* Set your image as the background with an overlay for readability */
+  
+      background-color: var(--trasnaprent); 
+      
       background-image: url('https://i.postimg.cc/FsBH7D6t/3d-senti.jpg');
       background-size: cover;
       background-position: center center;
       background-attachment: fixed;
-      /* --- MODIFICATION END --- */
+      
       color: var(--text-color);
       padding: 20px;
       margin: 0;
       line-height: 1.6;
       display: flex;
-      flex-direction: column; /* CRITICAL FIX: Stacks items vertically */
+      flex-direction: column; 
       justify-content: center;
       align-items: center;
       min-height: 100vh;
@@ -96,7 +95,7 @@
     }
 
     input {
-      width: 100%; /* Simplified due to box-sizing */
+      width: 100%; 
       padding: 12px;
       border-radius: 8px;
       border: 1px solid var(--border-color);
@@ -178,7 +177,7 @@
 
     footer {
       text-align: center;
-      margin: 30px 0 10px 0; /* Adjusted margin for proper spacing */
+      margin: 30px 0 10px 0; 
       width: 100%;
       font-size: 0.9em;
       color:#F5DEB3;
@@ -217,7 +216,7 @@
     @media (max-width: 768px) {
       body {
         padding: 10px;
-        justify-content: flex-start; /* Aligns content to the top on mobile */
+        justify-content: flex-start; 
       }
       
       .app {
@@ -256,7 +255,7 @@
     <h2>AI Startup Mentor</h2>
 
     <label for="idea" style="color: #32CD32;">Enter your startup idea:</label>
-    <input type="text" id="idea" placeholder="e.g., AI-powered nutrition coach" />
+    <input type="text" id="idea" placeholder=" sentient ai" />
 
     <button id="generateBtn">✨ Generate Insights</button>
 
@@ -264,7 +263,7 @@
   </div>
 
   <footer>
-    Designed & Developed by <strong>Abhishek</strong> | Powered by <strong>Sentient x Fireworks AI</strong>
+    <strong> Made by Abhishek</strong> 
   </footer>
 
   <script>
